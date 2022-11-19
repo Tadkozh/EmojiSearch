@@ -1,4 +1,4 @@
-<h1 style="color: rgb(20, 41, 225)"># EMOJI SEARCH</h1>
+<h1 style="color: rgb(20, 41, 225)">EMOJI SEARCH</h1>
 
 ## A project created with [Vite](https://vitejs.dev/)
 
@@ -13,4 +13,5 @@ Type a name, a keyword, an emoji, and the app returns the characteristics of the
 - npm run dev
 - enjoy !
 
-[center]![Wild Games](public/CaptureEmojiSearch.png "Un panel de 1820 emojis !")[/center]
+![Emoji Search](public/CaptureEmojiSearch.png "Un panel de 1820 emojis !")
+
