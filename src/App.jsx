@@ -56,7 +56,7 @@ function SearchInput({onTextChange}) {
 }
 
 function EmojiSearch() {
-  const [dataEmoji, setDataEmoji] = React.useState(emojiList) //contient un tableau d'émojis
+  const [dataEmoji, setDataEmoji] = useState(emojiList) //contient un tableau d'émojis
 
   const handleTextChange = text => {
     setDataEmoji(filterEmoji(text))
