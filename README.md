@@ -1,10 +1,12 @@
 <h1 style="color: rgb(20, 41, 225)">EMOJI SEARCH</h1>
 
 ## A project created with [Vite](https://vitejs.dev/)
+(Vite requires **Node.js version 14.18 at least**)
 
-Type a name, a keyword, an emoji, and the app returns the characteristics of the corresponding emoji
+This app uses **Clipboard** library https://www.npmjs.com/package/clipboard
 
-**Coming soon** : click on an emoji to put it in the clipboard, and use it wherever you want
+- Type a name, a keyword, an emoji, and the app returns the characteristics of the corresponding emoji
+- Click on an emoji to put it in the clipboard, and use it wherever you want
 - - -
 # TO SEE THIS PROJECT IN ACTION LOCALLY :
 

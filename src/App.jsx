@@ -22,12 +22,10 @@
 // http://localhost:3000/alone/exercise/04.js
 // Fork de : https://github.com/ahfarmer/emoji-search/
 
-// import { useState, useEffect } from 'react'; Marche pas à l'intérieur du cours 
 import React from 'react'
 import { useState, useEffect } from 'react'
 import emojiList from './assets/emojiList.json'
-// eslint-disable-next-line no-unused-vars
-// import Clipboard from 'clipboard'
+import Clipboard from 'clipboard'
 import './App.css'
 
 function Header({nbFound}) {
@@ -69,24 +67,15 @@ function EmojiSearch() {
     </div>
   )
 }
-// fin EmojiSearch parent*************************
 
-// 🐶 Gère le 'copier dans le presse papier' grace à la librairie clipboard
-// 📑 https://www.npmjs.com/package/clipboard
-// 📑 Dans la documentation il est spécifié que pour utiliser il faut instancier clipboard
-// 🤖 var clipboard = new ClipboardJS('.btn'); //btn nom de classe ou sera appliqué la copy.
-// 📑 l'attribut 'data-clipboard-text' permet de spécifier ce qui sera copié
-// 🤖 <div data-clipboard-text='Salut' /> copiera dans le press papier salut
-
-// 📑 il faut ensuite detruire l'objet quand on en a plus besoin
-// 🤖 clipboard.destroy();
+// 🐶 Gère le 'copier dans le presse papier' grâce à la librairie clipboard (npm i clipboard)
 function Result({data = []}) {
-  // 🐶 Utilise 'useEffect' pour gérer l'instanciation de clipboard
-  // 🤖 React.useEffect
-  // 🤖 const clipboard = new Clipboard('.copy-to-clipboard')
 
-  // 🐶 N'oubllie pas de 'cleanup' detruire l'objet dans useEffect en retournant une fonction fléché
-  // 🤖 return () => { clipboard.destroy() }
+  useEffect(() => {
+    const clipboard = new Clipboard('.copy-to-clipboard')
+    return () => { clipboard.destroy() }
+  }, [])
+
   return (
     <div className="component-emoji-results">
       {data.map(emojiData => (
@@ -100,15 +89,14 @@ function Result({data = []}) {
   )
 }
 
-// 🐶 Gère la copie de l'emoji en appliquant lesattributs necessaires à clipboard
+// 🐶 Gère la copie de l'emoji en appliquant les attributs necessaires à clipboard
 function EmojiResultRow({symbol, title}) {
-  // 🐶 Ajoute le className 'copy-to-clipboard'
-  // 🤖 className="copy-to-clipboard"
 
-  // 🐶 Ajoute l'attribut data-clipboard-text à la div
-  // 🤖 <div data-clipboard-text={symbol}
   return (
-    <div className="component-emoji-result-row">
+    <div 
+      data-clipboard-text={symbol} 
+      className="component-emoji-result-row copy-to-clipboard"
+    >
       {symbol}
       <span className="title">{title}</span>
       <span className="info">Copier</span>
@@ -121,7 +109,6 @@ function App() {
 }
 export default App
 
-// eslint-disable-next-line no-unused-vars
 function filterEmoji(searchText, maxResults = 10) {
   return emojiList
     .filter(emoji => {
