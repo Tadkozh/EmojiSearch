@@ -4,6 +4,7 @@
 (Vite requires **Node.js version 14.18 at least**)
 
 This app uses **Clipboard** library https://www.npmjs.com/package/clipboard
+
 and the associated hook **react-use-clipboard** https://www.npmjs.com/package/react-use-clipboard
 
 - Type a name, a keyword, an emoji, and the app returns the characteristics of the corresponding emoji

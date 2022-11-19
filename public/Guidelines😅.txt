@@ -1,0 +1,32 @@
+Emoji List
+
+*****************************************************
+👨✈️ Hugo the Project Manager gives the specifications of the application: Build an application to search for emojis in a web page. 
+This application will contain:
+
+Header - A header containing a label and the number of results found
+SearchInput - A search field that will search in
+          The title of the emoji
+          The emoji's keywords
+          On its symbol
+Result which contains EmojiResultRow - An array of results
+          Which will display emojis
+          By clicking on the result row, the emoji will be copied to the clipboard
+
+EmojiSearch is the parent component
+
+🐶 In this exercise we will have to implement emoji search with useState and useEffect hooks if needed. 
+*****************************************************
+
+COMPONENTS
+
+- App
+  - EmojiSearch
+    - Header
+    - SearchInput
+    - Result
+      - EmojiResultRow
+
+FUNCTIONS
+
+- filterEmojiEmoji
