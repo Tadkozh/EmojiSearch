@@ -1,38 +1,35 @@
 // Emoji List
 
 //*****************************************************
-// 👨‍✈️ Hugo le Chef de projet donnera les spécifications de l’application : Construire une application de recherche d’émojis dans un page web. 
-// Cette application contiendra :
+// 👨✈️ Hugo the Project Manager gives the specifications of the application: Build an application to search for emojis in a web page. 
+// This application will contain:
 
-// Header - Un header contenant un libellé et le nombre de résultats trouvés
-// SearchInput - Un champs de recherche qui permettra de rechercher dans
-//           Le titre le l’émoji
-//           Les mots clef de l’emoji
-//           Sur son symbole
-// Result qui contient EmojiResultRow - Un tableau de résultats
-//           Qui affichera des emojis
-//           En cliquant sur la ligne de résultat, l’emoji sera copié au presse papier
+// Header - A header containing a label and the number of results found
+// SearchInput - A search field that will search in
+//           The title of the emoji
+//           The emoji's keywords
+//           On its symbol
+// Result which contains EmojiResultRow - An array of results
+//           Which will display emojis
+//           By clicking on the result row, the emoji will be copied to the clipboard
 
-// EmojiSearch est le composant parent
+// EmojiSearch is the parent component
 
-// 🐶 Dans cette exercice il va falloir implémenter la recherche d’emoji avec des Hooks useState et useEffect si besoin. 
-// Le pattern Lift state up se rapproche le plus de ce que l’on veut faire.
+// 🐶 In this exercise we will have to implement emoji search with useState and useEffect hooks if needed. 
 //*****************************************************
-
-// http://localhost:3000/alone/exercise/04.js
-// Fork de : https://github.com/ahfarmer/emoji-search/
 
 import React from 'react'
 import { useState, useEffect } from 'react'
 import emojiList from './assets/emojiList.json'
-import Clipboard from 'clipboard'
+//import Clipboard from 'clipboard'
+import useClipboard from 'react-use-clipboard'
 import './App.css'
 
 function Header({nbFound}) {
   return (
-    <div className="component-header">
+    <div className='component-header'>
       <div>Recherche Emoji</div>
-      <div className="reusult-found">
+      <div className='result-found'>
         {nbFound > 0 ? `${nbFound} emojis trouvés`: 'Aucun résultat'}
       </div>
     </div>
@@ -42,10 +39,10 @@ function Header({nbFound}) {
 function SearchInput({onTextChange}) {
 
   return (
-    <div className="component-search-input">
+    <div className='component-search-input'>
       <div>
       <input
-        placeholder='Search for an emoji by title, symbol, keyword'
+        placeholder='Recherche par titre, symbole, mot-clé'
         onChange={e => onTextChange(e.target.value)}
       />
       </div>
@@ -68,16 +65,17 @@ function EmojiSearch() {
   )
 }
 
-// 🐶 Gère le 'copier dans le presse papier' grâce à la librairie clipboard (npm i clipboard)
+
 function Result({data = []}) {
 
-  useEffect(() => {
-    const clipboard = new Clipboard('.copy-to-clipboard')
-    return () => { clipboard.destroy() }
-  }, [])
+// 🐶 Gère le 'copier dans le presse papier' grâce à la librairie clipboard (npm i clipboard)
+  // React.useEffect(() => {
+  //   const clipboard = new Clipboard('.copy-to-clipboard')
+  //   return () => { clipboard.destroy() }
+  // }, [])
 
   return (
-    <div className="component-emoji-results">
+    <div className='component-emoji-results'>
       {data.map(emojiData => (
         <EmojiResultRow
           key={emojiData.title}
@@ -89,17 +87,22 @@ function Result({data = []}) {
   )
 }
 
-// 🐶 Gère la copie de l'emoji en appliquant les attributs necessaires à clipboard
+// 🐶 Gère le hook react-use-clipboard
 function EmojiResultRow({symbol, title}) {
+  const [isCopied, setCopied] = useClipboard(symbol)
 
   return (
     <div 
-      data-clipboard-text={symbol} 
-      className="component-emoji-result-row copy-to-clipboard"
+      //data-clipboard-text={symbol} 
+      className='component-emoji-result-row' //copy-to-clipboard
+      onClick={setCopied}
     >
       {symbol}
-      <span className="title">{title}</span>
-      <span className="info">Copier</span>
+      <span className='title'>{title}</span>
+      <span className='info' >
+        { isCopied ? <span className="info"> 📋 </span> : null }
+        Copier
+      </span>
     </div>
   )
 }
